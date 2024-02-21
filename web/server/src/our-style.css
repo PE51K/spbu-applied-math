@@ -1,0 +1,26 @@
+body {
+background: #aabbFF;
+margin: 0 100px 0 100px;
+}
+#header h1:after {
+content: "СПбГУ: учебный курс по PHP";
+color: #7700ff;
+}
+#example {
+background: #7700ff;
+color: white;
+}
+#content {
+width: 700px;
+background: lightgrey;
+border-style: solid;
+border-color: #7700ff;
+margin-top: 20px;
+}
+input[type="submit"], input[type="reset"], fieldset {
+border-style: solid;
+border-color: #7700ff;;
+}
+input[type="submit"]:hover, input[type="reset"]:hover {
+background: #7700ff;
+}
