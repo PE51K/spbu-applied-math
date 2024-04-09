@@ -1,0 +1,8 @@
+FROM nvidia/cuda:11.8.0-cudnn8-runtime-ubuntu20.04
+
+WORKDIR /number-recognition-telegram-bot
+COPY . .
+
+RUN pip install -r requirements-bot-cuda.txt"
+
+CMD ["python3 bot/bot.py"]
