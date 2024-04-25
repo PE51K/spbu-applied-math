@@ -17,6 +17,9 @@ if (isset($_GET['delete'])) {
 
 // Запрос к базе данных для получения списка студентов, сортированных по группе и имени
 $result = $conn->query("SELECT student_id, full_name, `group` FROM students ORDER BY `group`, full_name");
+if ($result === false) {
+    die("Ошибка SQL запроса: " . $conn->error);
+}
 $current_group = null;
 ?>
 
@@ -32,21 +35,22 @@ $current_group = null;
     <ul>
         <?php while ($row = $result->fetch_assoc()): ?>
             <?php
-            // Проверяем, изменилась ли группа по сравнению с предыдущей итерацией
             if ($current_group !== $row['group']) {
                 if ($current_group !== null) {
-                    echo "</ul>"; // Закрываем предыдущий список, если это не первая группа
+                    echo "</ul>";
                 }
                 echo "<h2>Группа: " . htmlspecialchars($row['group']) . "</h2><ul>";
                 $current_group = $row['group'];
             }
             ?>
             <li>
-                <?= htmlspecialchars($row['full_name']) ?> (Группа: <?= htmlspecialchars($row['group']) ?>)
-                - <a href="?delete=<?= $row['student_id'] ?>" onclick="return confirm('Вы уверены, что хотите удалить этого студента?');">Удалить</a>
-                - <a href="student_details.php?id=<?= $row['student_id'] ?>">Подробнее</a>
+                <a href="student_details.php?id=<?= $row['student_id'] ?>" style="text-decoration: none; color: black;">
+                    <?= htmlspecialchars($row['full_name']) ?> (Группа: <?= htmlspecialchars($row['group']) ?>)
+                </a>
+                - <a href="?delete=<?= $row['student_id'] ?>" onclick="return confirm('Вы уверены, что хотите удалить этого студента?');" style="color: red;">Удалить</a>
             </li>
         <?php endwhile; ?>
-        </ul>
+    </ul>
+    <a href="index.php" style="display: inline-block; margin-top: 20px; padding: 8px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Вернуться в меню</a>
 </body>
 </html>

@@ -45,5 +45,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </p>
         <button type="submit">Добавить</button>
     </form>
+    <a href="index.php" style="display: inline-block; margin-bottom: 20px; padding: 8px 16px; background-color: #28a745; color: white; text-decoration: none; border-radius: 5px;">Вернуться в меню</a>
 </body>
 </html>
