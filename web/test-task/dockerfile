@@ -1,0 +1,13 @@
+# Используем официальный образ PHP с Apache
+FROM php:8.0-apache
+
+# Установим mysqli расширение для работы с MySQL
+RUN docker-php-ext-install mysqli pdo pdo_mysql
+RUN docker-php-ext-enable mysqli pdo pdo_mysql
+
+# Копируем исходный код приложения в контейнер
+COPY src/ /var/www/html/
+
+# Откроем 80 порт для веб-сервера
+EXPOSE 80
+
