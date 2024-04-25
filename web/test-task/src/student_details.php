@@ -45,6 +45,69 @@ $student_query->close();
 <head>
     <meta charset="UTF-8">
     <title>Детали студента</title>
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 20px;
+            margin: 0;
+        }
+        h1, h2 {
+            text-align: center;
+            color: #0056b3;
+        }
+        form {
+            max-width: 500px;
+            margin: auto;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .back-button {
+            display: inline-block;
+            width: 200px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .back-button:hover {
+            background-color: #1e6b34;
+        }
+    </style>
 </head>
 <body>
     <h1>Детали студента: <?= htmlspecialchars($student['full_name']) ?></h1>
@@ -69,7 +132,6 @@ $student_query->close();
         <?php endwhile; ?>
         <button type="submit" name="update_grades">Обновить оценки</button>
     </form>
-    <a href="students_list.php">Вернуться к списку студентов</a>
-    <a href="students_list.php" style="display: inline-block; margin-top: 20px; padding: 8px 16px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Вернуться к списку студентов</a>
+    <a href="students_list.php" class="back-button">Вернуться к списку студентов</a>
 </body>
 </html>
