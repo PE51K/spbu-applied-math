@@ -8,7 +8,7 @@
     <h1>Добро пожаловать в систему учета оценок студентов</h1>
     <ul>
         <li><a href="add_student.php">Добавить студента</a></li>
-        <li><a href="group_list.php">Список студентов по группам</a></li>
+        <li><a href="students_list.php">Список студентов по группам</a></li>
     </ul>
 </body>
 </html>

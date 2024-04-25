@@ -1,20 +1,32 @@
-CREATE DATABASE student_grades;
-
+-- Создание базы данных (если необходимо, в зависимости от вашей конфигурации Docker может быть не нужно)
+CREATE DATABASE IF NOT EXISTS student_grades;
 USE student_grades;
 
+-- Создание таблиц
 CREATE TABLE students (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    fullname VARCHAR(255) NOT NULL,
-    group_name VARCHAR(50) NOT NULL
+    student_id INT AUTO_INCREMENT PRIMARY KEY,
+    full_name VARCHAR(255) NOT NULL,
+    group VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE subjects (
+    subject_id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL
 );
 
 CREATE TABLE assessments (
-    id INT AUTO_INCREMENT PRIMARY KEY,
+    assessment_id INT AUTO_INCREMENT PRIMARY KEY,
+    type VARCHAR(50) NOT NULL,
+    subject_id INT,
+    FOREIGN KEY (subject_id) REFERENCES subjects(subject_id)
+);
+
+CREATE TABLE student_assessments (
+    student_assessment_id INT AUTO_INCREMENT PRIMARY KEY,
     student_id INT,
-    subject VARCHAR(100) NOT NULL,
-    project_work BOOLEAN,
-    test BOOLEAN,
-    credit BOOLEAN,
-    exam BOOLEAN,
-    FOREIGN KEY (student_id) REFERENCES students(id)
+    assessment_id INT,
+    status VARCHAR(50),
+    grade INT,
+    FOREIGN KEY (student_id) REFERENCES students(student_id),
+    FOREIGN KEY (assessment_id) REFERENCES assessments(assessment_id)
 );
