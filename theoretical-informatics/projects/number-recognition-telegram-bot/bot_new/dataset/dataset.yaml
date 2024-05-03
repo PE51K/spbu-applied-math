@@ -1,0 +1,7 @@
+
+path: /home/gregory1m/PycharmProjects/spbu-applied-math/theoretical-informatics/projects/number-recognition-telegram-bot/bot_new/dataset
+train: images/train
+val: images/train  # Используем тренировочный набор как валидационный
+
+nc: 1  # количество классов
+names: ['card_number']  # Замените на имя вашего класса
