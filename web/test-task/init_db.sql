@@ -1,4 +1,3 @@
--- Создание базы данных (если необходимо, в зависимости от вашей конфигурации Docker может быть не нужно)
 CREATE DATABASE IF NOT EXISTS student_grades;
 USE student_grades;
 
@@ -6,7 +5,7 @@ USE student_grades;
 CREATE TABLE students (
     student_id INT AUTO_INCREMENT PRIMARY KEY,
     full_name VARCHAR(255) NOT NULL,
-    group VARCHAR(50) NOT NULL
+    `group` VARCHAR(50) NOT NULL  -- Enclosed in backticks
 );
 
 CREATE TABLE subjects (

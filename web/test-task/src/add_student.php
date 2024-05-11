@@ -1,3 +1,26 @@
+<?php
+// Подключение к базе данных
+include 'db_connect.php';
+
+// Обработка POST запроса
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $full_name = $_POST['full_name'];
+    $group = $_POST['group'];
+
+    // Подготовка и выполнение запроса к базе данных
+    $stmt = $conn->prepare("INSERT INTO students (full_name, `group`) VALUES (?, ?)");
+    $stmt->bind_param("ss", $full_name, $group);
+    $stmt->execute();
+
+    if ($stmt->affected_rows > 0) {
+        echo "Студент успешно добавлен!";
+    } else {
+        echo "Ошибка при добавлении студента: " . $conn->error;
+    }
+    $stmt->close();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>

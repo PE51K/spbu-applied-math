@@ -8,6 +8,10 @@ services:
       - db
   db:
     image: mysql:5.7
+    ulimits:
+      nofile:
+        soft: 1048576
+        hard: 1048576
     environment:
       MYSQL_ROOT_PASSWORD: root
       MYSQL_DATABASE: student_grades
@@ -15,6 +19,8 @@ services:
       MYSQL_PASSWORD: password
     ports:
       - "3306:3306"
+    volumes:
+      - ./init_db.sql:/docker-entrypoint-initdb.d/init_db.sql
   phpmyadmin:
     image: phpmyadmin/phpmyadmin
     environment:

@@ -4,6 +4,13 @@ include 'db_connect.php'; // Подключаемся к базе данных
 // Обработка запроса на удаление
 if (isset($_GET['delete'])) {
     $student_id = $_GET['delete'];
+
+    // Сначала удаляем все связанные оценки
+    $delete_assessments = $conn->prepare("DELETE FROM assessments WHERE student_id = ?");
+    $delete_assessments->bind_param("i", $student_id);
+    $delete_assessments->execute();
+
+    // Теперь удаляем студента
     $delete_stmt = $conn->prepare("DELETE FROM students WHERE student_id = ?");
     $delete_stmt->bind_param("i", $student_id);
     $delete_stmt->execute();
@@ -14,6 +21,7 @@ if (isset($_GET['delete'])) {
     }
     $delete_stmt->close();
 }
+
 
 // Запрос к базе данных для получения списка студентов, сортированных по группе и имени
 $result = $conn->query("SELECT student_id, full_name, `group` FROM students ORDER BY `group`, full_name");

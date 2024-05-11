@@ -6,6 +6,7 @@ $database = "student_grades"; // Название базы данных
 
 // Создание подключения
 $conn = new mysqli($servername, $username, $password, $database);
+$conn->set_charset("utf8mb4");
 
 // Проверка подключения
 if ($conn->connect_error) {
